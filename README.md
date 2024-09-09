@@ -1,3 +1,5 @@
+> A utility function to handle promise resolution with automatic retries and error handling. into allows you to easily await a promise while handling potential errors in a structured format, offering retries with customizable delay.
+
 <div style="text-align: center;" align="center">
 
 # await-into
@@ -33,20 +35,34 @@ $ yarn add await-into
 
 ### Simple Usage
 
-1. ES6 module
+1. ES6 module with no retries
 
 ```js
 import into from 'await-into'
 
-const [err, data] = await into(/* promise function */)
+async function example() {
+    const [error, result] = await into(fetchData());
+    if (error) {
+        console.error('Error:', error);
+    } else {
+        console.log('Result:', result);
+    }
+}
 ```
 
-2.重试策略
+2.ES6 module with retries and delay
 
 ```js
 import into from 'await-into'
 
-const [err, data] = await on(someAsyncOperation, { retries: 3 });
+async function exampleWithRetries() {
+    const [error, result] = await into(fetchData(), { retries: 3, retryDelay: 1000 });
+    if (error) {
+        console.error('Error after retries:', error);
+    } else {
+        console.log('Successful result:', result);
+    }
+}
 ```
 
 3.Node.js require
@@ -62,8 +78,8 @@ const [err, data] = await into(/* promise function */)
 ```js
 import into from 'await-into'
 
-const bar = () => new Promise<boolean>()
-const foo = () => new Promise<string>()
+const bar = () => new Promise()
+const foo = () => new Promise()
 
 const [err, data] = await into(bar(), foo()) // data = [boolean, string]
 // or pass in an Array

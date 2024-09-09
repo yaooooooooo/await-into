@@ -1,14 +1,27 @@
 'use strict';
 
-async function into(promise, error, retries = 0, errorHandler = async (err) => `${err.message} & ${error}`) {
+async function into(promise, options = {}) {
+  const {
+    retries = 0,
+    retryDelay = 0,
+    error = '',
+  } = options;
+
+  if (!promise || typeof promise.then !== 'function') {
+    throw new Error('A valid Promise is required');
+  }
+
   for (let i = 0; i <= retries; i++) {
     try {
       const data = await promise;
-        return [null, data];
+      return [null, data];
     } catch (err) {
       if (i === retries) {
-        const handledError = await errorHandler(err);
-        return [handledError, undefined];
+        return [err.message || error || 'Unknown error', undefined];
+      }
+
+      if (retryDelay > 0) {
+        await new Promise((resolve) => setTimeout(resolve, retryDelay));
       }
     }
   }

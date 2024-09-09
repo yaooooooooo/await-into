@@ -38,7 +38,14 @@ $ yarn add await-into
 ```js
 import into from 'await-into'
 
-const [err, data] = await into(/* promise function */)
+async function example() {
+    const [error, result] = await into(fetchData());
+    if (error) {
+        console.error('Error:', error);
+    } else {
+        console.log('Result:', result);
+    }
+}
 ```
 
 2.重试策略
@@ -46,7 +53,14 @@ const [err, data] = await into(/* promise function */)
 ```js
 import into from 'await-into'
 
-const [err, data] = await on(someAsyncOperation, { retries: 3 });
+async function exampleWithRetries() {
+    const [error, result] = await into(fetchData(), { retries: 3, retryDelay: 1000 });
+    if (error) {
+        console.error('Error after retries:', error);
+    } else {
+        console.log('Successful result:', result);
+    }
+}
 ```
 
 3.Node.js require
