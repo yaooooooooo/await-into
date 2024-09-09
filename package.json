@@ -1,0 +1,36 @@
+{
+  "name": "await-into",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.mjs.js",
+  "scripts": {
+    "build": "rollup -c",
+    "prepublish": "npm version patch"
+  },
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [],
+  "author": "rui <https://github.com/yaooooooooo>",
+  "license": "MIT",
+  "homepage": "https://github.com/yaooooooooo/await-into#readme",
+  "bugs": {
+    "url": "https://github.com/yaooooooooo/await-into/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yaooooooooo/await-into.git"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^26.0.1",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "rollup": "^4.21.2"
+  }
+}
