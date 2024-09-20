@@ -96,18 +96,6 @@ const [err, data] = await into(bar(), foo()) // data = [boolean, string]
 const [err, data] = await into([bar(), foo()]) // data = [boolean, string]
 ```
 
-### 使用 unpkg CDN
-
-```html
-<script src="https://unpkg.com/await-into@latest/dist/index.global.prod.js"></script>
-<script>
-  ;(async () => {
-    const into = window.awaitToDone
-    const [err, data] = await into(/* promise function */)
-  })()
-</script>
-```
-
 ## 问题和支持
 
 Please open an issue [here](https://github.com/yaooooooooo/await-into/issues).

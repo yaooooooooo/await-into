@@ -88,16 +88,6 @@ const [err, data] = await into([bar(), foo()]) // data = [boolean, string]
 
 ### Using unpkg CDN
 
-```html
-<script src="https://unpkg.com/await-into@latest/dist/index.global.prod.js"></script>
-<script>
-  ;(async () => {
-    const into = window.awaitToDone
-    const [err, data] = await into(/* promise function */)
-  })()
-</script>
-```
-
 ## Support & Issues
 
 Please open an issue [here](https://github.com/yaooooooooo/await-into/issues).
