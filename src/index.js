@@ -15,7 +15,7 @@ async function into(promise, options = {}) {
       return [null, data];
     } catch (err) {
       if (i === retries) {
-        return [err.message || error || 'Unknown error', undefined];
+        return [ err && err.message || error || 'Unknown error', undefined];
       }
 
       if (retryDelay > 0) {
